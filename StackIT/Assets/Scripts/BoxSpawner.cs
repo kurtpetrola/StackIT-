@@ -7,7 +7,7 @@ public class BoxSpawner : MonoBehaviour
     public GameObject box_Prefab;
 
 
-   public void SpawnBox()
+    public void SpawnBox()
     {
         GameObject box_Obj = Instantiate(box_Prefab);
 
