@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScene.unity
     guid: a7c99a67d29a3044d8c6f4cded325f5c
   - enabled: 1
-    path: Assets/Scenes/MainMapScene.unity
+    path: Assets/Scenes/MainScene.unity
     guid: 1cbc9672a75728f44bcee2c989c7e995
   - enabled: 1
     path: Assets/Scenes/GameScenes/GameScene1.unity
@@ -41,10 +41,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScenes/MultiplayerGS.unity
     guid: 07d5573e654d1b3448486938a6c5a805
-  - enabled: 1
-    path: Assets/Scenes/MultiplayerScene.unity
-    guid: b9c64d77ebd354e4f956157c619da635
-  - enabled: 1
-    path: Assets/Scenes/ShopScene.unity
-    guid: e99ecc8e5f8d6734fb67c3b3aee83a2a
   m_configObjects: {}

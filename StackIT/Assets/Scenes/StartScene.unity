@@ -789,7 +789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff0e77acf9745d4aafd928ced74a6c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: MainMapScene
+  sceneName: MainScene
 --- !u!4 &1855405936
 Transform:
   m_ObjectHideFlags: 0
@@ -817,7 +817,7 @@ GameObject:
   - component: {fileID: 1981210310}
   - component: {fileID: 1981210312}
   m_Layer: 0
-  m_Name: SoundManager
+  m_Name: AudioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
