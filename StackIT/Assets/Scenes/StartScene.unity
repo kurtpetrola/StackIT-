@@ -155,6 +155,7 @@ MonoBehaviour:
   loadingScreen: {fileID: 1248409359}
   slider: {fileID: 609098293}
   progressText: {fileID: 1965179436}
+  delayBeforeStart: 1
 --- !u!4 &267552676
 Transform:
   m_ObjectHideFlags: 0
