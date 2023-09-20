@@ -156,7 +156,7 @@ MonoBehaviour:
   slider: {fileID: 609098293}
   progressText: {fileID: 1965179436}
   delayBeforeStart: 1
-  progressMultiplier: 0.5
+  progressMultiplier: 1
 --- !u!4 &267552676
 Transform:
   m_ObjectHideFlags: 0
