@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5443868013751842914}
   - component: {fileID: -7823691946030637017}
   m_Layer: 0
-  m_Name: Box7
+  m_Name: P4
   m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

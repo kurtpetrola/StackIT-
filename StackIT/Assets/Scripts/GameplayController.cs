@@ -48,7 +48,7 @@ public class GameplayController : MonoBehaviour
 
     public void SpawnNewBox()
     {
-        Invoke("NewBox", 1f);
+        Invoke("NewBox", 0.5f);
     }
 
     void NewBox()
@@ -59,7 +59,7 @@ public class GameplayController : MonoBehaviour
     public void MoveCamera()
     {
         moveCount++;
-        if (moveCount == 3)
+        if (moveCount == 2)
         {
             moveCount = 0;
             cameraScript.targetPos.y += 2f;
