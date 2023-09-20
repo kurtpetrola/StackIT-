@@ -8,16 +8,16 @@ public class CameraFollow : MonoBehaviour
     [HideInInspector]
     public Vector3 targetPos;
 
-    public float smoothMove = 1f;
+    public float smoothMove = 0.5f;
 
 
     void Start()
     {
         targetPos = transform.position;
     }
-   
+
     void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, targetPos, smoothMove * Time.deltaTime); 
+        transform.position = Vector3.Lerp(transform.position, targetPos, smoothMove * Time.deltaTime);
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8514296316312790263}
   - component: {fileID: 1744434714586614240}
   - component: {fileID: 6343518370090564019}
-  - component: {fileID: -1417781280357122583}
+  - component: {fileID: -3844078110083425993}
   m_Layer: 0
   m_Name: Box1
   m_TagString: Box
@@ -130,7 +130,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
+  m_Size: {x: 3.1, y: 2.73}
   m_EdgeRadius: 0
 --- !u!50 &6343518370090564019
 Rigidbody2D:
@@ -159,7 +159,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-1417781280357122583
+--- !u!114 &-3844078110083425993
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -171,7 +171,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be71f4a5528bc79499ae9cd06cf3addb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsToDrop:
-  - {fileID: 6391254955205029149, guid: 223fd73dc3a45d849a4a44919912c841, type: 3}
-  - {fileID: 1878990289737637760, guid: adb9cc734efd8364bb3ffe032ed0de96, type: 3}
-  - {fileID: 4159626585843135730, guid: d740f3a6bf37cf7408c24bfacac30e3f, type: 3}
+  objectsToDrop: []

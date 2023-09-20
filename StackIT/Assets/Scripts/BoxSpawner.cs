@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class BoxSpawner : MonoBehaviour
 {
-    public GameObject box_Prefab;
-
+    public GameObject[] boxPrefabs; // Assign your box prefab variants in the inspector.
 
     public void SpawnBox()
     {
-        GameObject box_Obj = Instantiate(box_Prefab);
+        int randomIndex = Random.Range(0, boxPrefabs.Length);
+        GameObject boxPrefabVariant = boxPrefabs[randomIndex];
 
+        GameObject boxObj = Instantiate(boxPrefabVariant);
         Vector3 temp = transform.position;
         temp.z = 0f;
-
-        box_Obj.transform.position = temp;
-
+        boxObj.transform.position = temp;
     }
-
 }

@@ -12,7 +12,7 @@ public class BoxScript : MonoBehaviour
     private float move_Speed = 2f;
     public GameObject[] objectsToDrop;
     private Rigidbody2D myBody;
-   
+
     private bool gameOver;
     private bool ignoreColliosn;
     private bool ignoreTrigger;
@@ -28,16 +28,16 @@ public class BoxScript : MonoBehaviour
     {
         canMove = true;
 
-        if(UnityEngine.Random.Range(0, 2) > 0)
+        if (UnityEngine.Random.Range(0, 2) > 0)
         {
             move_Speed *= -1f;
         }
 
         GameplayController.instance.currentBox = this;
-        
+
     }
 
-   
+
     void Update()
     {
         MoveBox();
@@ -45,13 +45,13 @@ public class BoxScript : MonoBehaviour
 
     void MoveBox()
     {
-        if(canMove)
+        if (canMove)
         {
             Vector3 temp = transform.position;
 
             temp.x += move_Speed * Time.deltaTime;
 
-            if(temp.x > max_X)
+            if (temp.x > max_X)
             {
                 move_Speed *= -1f;
             }
@@ -77,7 +77,7 @@ public class BoxScript : MonoBehaviour
             // Instantiate the chosen object at the current position of the box.
             Instantiate(objectToDrop, transform.position, Quaternion.identity);
         }
-        
+
     }
 
 
@@ -87,7 +87,7 @@ public class BoxScript : MonoBehaviour
         if (gameOver)
             return;
 
-            ignoreColliosn = true;
+        ignoreColliosn = true;
         ignoreTrigger = true;
 
         GameplayController.instance.SpawnNewBox();
