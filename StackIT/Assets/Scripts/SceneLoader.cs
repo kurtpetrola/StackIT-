@@ -9,7 +9,7 @@ public class SceneLoader : MonoBehaviour
     public Slider slider;
     public Text progressText;
     public float delayBeforeStart = 1.0f; // Delay before starting the loading
-    public float progressMultiplier = 0f; // Adjust this to control the progress speed
+    public float progressMultiplier = 0.1f; // Adjust this to control the progress speed
 
     public void LoadScene(int sceneIndex)
     {
