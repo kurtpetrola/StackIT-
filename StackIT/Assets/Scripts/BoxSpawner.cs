@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BoxSpawner : MonoBehaviour
 {
-    public GameObject[] boxPrefabs; // Assign your box prefab variants in the inspector.
+    public GameObject[] boxPrefabs; 
 
     public void SpawnBox()
     {

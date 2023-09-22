@@ -1,12 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 public class BoxScript : MonoBehaviour
 {
     private float min_X = -2.2f, max_X = 2.2f;
+    private int playerScore = 0;
 
     private bool canMove;
     private float move_Speed = 2f;
@@ -14,29 +13,26 @@ public class BoxScript : MonoBehaviour
     private Rigidbody2D myBody;
 
     private bool gameOver;
-    private bool ignoreColliosn;
+    private bool ignoreCollision;
     private bool ignoreTrigger;
 
     void Awake()
     {
         myBody = GetComponent<Rigidbody2D>();
         myBody.gravityScale = 0f;
-
     }
 
     void Start()
     {
         canMove = true;
 
-        if (UnityEngine.Random.Range(0, 2) > 0)
+        if (Random.Range(0, 2) > 0)
         {
             move_Speed *= -1f;
         }
 
         GameplayController.instance.currentBox = this;
-
     }
-
 
     void Update()
     {
@@ -62,60 +58,62 @@ public class BoxScript : MonoBehaviour
             transform.position = temp;
         }
     }
+
     public void DropRandomObject()
     {
         canMove = false;
-        myBody.gravityScale = UnityEngine.Random.Range(2, 4);
+        myBody.gravityScale = Random.Range(2, 4);
 
         // Check if the objectsToDrop array is not empty
         if (objectsToDrop.Length > 0)
         {
             // Choose a random object from the objectsToDrop array.
-            int randomIndex = UnityEngine.Random.Range(0, objectsToDrop.Length);
+            int randomIndex = Random.Range(0, objectsToDrop.Length);
             GameObject objectToDrop = objectsToDrop[randomIndex];
 
             // Instantiate the chosen object at the current position of the box.
             Instantiate(objectToDrop, transform.position, Quaternion.identity);
         }
-
     }
-
-
 
     void Landed()
     {
         if (gameOver)
             return;
 
-        ignoreColliosn = true;
+        ignoreCollision = true;
         ignoreTrigger = true;
+        playerScore++;
+        // Uncomment the following line for debugging purposes:
+        // Debug.Log("Player Score: " + playerScore);
 
         GameplayController.instance.SpawnNewBox();
         GameplayController.instance.MoveCamera();
     }
+
     void RestartGame()
     {
         GameplayController.instance.RestartGame();
     }
+
     void OnCollisionEnter2D(Collision2D target)
     {
-        if (ignoreColliosn)
+        if (ignoreCollision)
             return;
 
         if (target.gameObject.tag == "Platform")
-
         {
             Invoke("Landed", 1f);
-            ignoreColliosn = true;
+            ignoreCollision = true;
         }
 
         if (target.gameObject.tag == "Box")
-
         {
             Invoke("Landed", 1f);
-            ignoreColliosn = true;
+            ignoreCollision = true;
         }
     }
+
     void OnTriggerEnter2D(Collider2D target)
     {
         if (ignoreTrigger)
@@ -123,11 +121,13 @@ public class BoxScript : MonoBehaviour
 
         if (target.tag == "GameOver")
         {
-            CancelInvoke("Landed");
+            // Set game over flag and disable box movement.
             gameOver = true;
+            canMove = false;
             ignoreTrigger = true;
 
-            Invoke("RestartGame", 2f);
+            // Notify the GameOverUIManager that the game is over and pass the score.
+            GameOverUIManager.Instance.ShowGameOverUI(playerScore);
         }
     }
 }
