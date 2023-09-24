@@ -84,11 +84,23 @@ public class BoxScript : MonoBehaviour
         ignoreCollision = true;
         ignoreTrigger = true;
         playerScore++;
-        // Uncomment the following line for debugging purposes:
-        // Debug.Log("Player Score: " + playerScore);
+
+        // Check if the player has successfully landed 10 stacks of boxes
+        if (playerScore % 10 == 0)
+        {
+            // Update the movement here
+            UpdateBoxMovement();
+        }
 
         GameplayController.instance.SpawnNewBox();
         GameplayController.instance.MoveCamera();
+    }
+
+    void UpdateBoxMovement()
+    {
+        // You can modify move_Speed or any other variables related to movement here.
+        // For example, you can increase the speed when the player lands 10 stacks.
+        move_Speed *= 1.5f; // Increase speed by 50%
     }
 
     void RestartGame()
