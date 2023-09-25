@@ -126,6 +126,7 @@ public class BoxScript : MonoBehaviour
         }
     }
 
+
     void OnTriggerEnter2D(Collider2D target)
     {
         if (ignoreTrigger)

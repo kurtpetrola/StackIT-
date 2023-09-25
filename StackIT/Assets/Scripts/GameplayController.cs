@@ -72,3 +72,6 @@ public class GameplayController : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 }
+
+
+
