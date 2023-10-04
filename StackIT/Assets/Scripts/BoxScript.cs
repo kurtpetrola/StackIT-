@@ -16,10 +16,19 @@ public class BoxScript : MonoBehaviour
     private bool ignoreCollision;
     private bool ignoreTrigger;
 
+    private ScoreManager scoreManager;
+
     void Awake()
     {
         myBody = GetComponent<Rigidbody2D>();
         myBody.gravityScale = 0f;
+
+        // Find the ScoreManager script in the scene.
+        scoreManager = FindObjectOfType<ScoreManager>();
+        if (scoreManager == null)
+        {
+            Debug.LogError("ScoreManager script not found in the scene.");
+        }
     }
 
     void Start()
@@ -83,7 +92,11 @@ public class BoxScript : MonoBehaviour
 
         ignoreCollision = true;
         ignoreTrigger = true;
-        playerScore++;
+         playerScore++;
+
+        // Update the score using the ScoreManager.
+        scoreManager.IncreaseScore();
+        GameOverUIManager.Instance.IncreaseScore();
 
         // Check if the player has successfully landed 10 stacks of boxes
         if (playerScore % 10 == 0)
@@ -125,7 +138,6 @@ public class BoxScript : MonoBehaviour
             ignoreCollision = true;
         }
     }
-
 
     void OnTriggerEnter2D(Collider2D target)
     {

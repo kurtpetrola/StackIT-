@@ -17,3 +17,4 @@ public class BoxSpawner : MonoBehaviour
         boxObj.transform.position = temp;
     }
 }
+

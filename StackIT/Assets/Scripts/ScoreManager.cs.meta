@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: adb08bb899f16d84cbc1dfa490efaa03
+guid: d7bdfe1a5b9ef324dad6cb9a248a2a3e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - PausePanel: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
