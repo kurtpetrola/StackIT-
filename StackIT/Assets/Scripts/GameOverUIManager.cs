@@ -26,7 +26,7 @@ public class GameOverUIManager : MonoBehaviour
     {
         // Restart the game by reloading the current scene.
         UnityEngine.SceneManagement.SceneManager.LoadScene(
-            UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+             UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
     public void GoToMainMap()
@@ -44,8 +44,6 @@ public class GameOverUIManager : MonoBehaviour
         // Set the points text to display the player's score.
         scoreText.text = "Score: " + score.ToString();
         GameOverUIManager.Instance.ShowGameOverUI(playerScore);
-
-        // Handle button clicks as described in previous responses.
     }
 
     // This method is called when the player scores points during the game.
