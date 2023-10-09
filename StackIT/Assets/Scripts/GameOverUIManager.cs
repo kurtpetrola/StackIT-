@@ -14,12 +14,15 @@ public class GameOverUIManager : MonoBehaviour
         Instance = this;
     }
 
-    public void ShowGameOverUI()
+    // This method is called when you want to display the game over screen with the score.
+    public void ShowGameOverUI(int score)
     {
         // Display the game over screen elements.
         gameOverPanel.SetActive(true);
 
-        // Handle button clicks as described in previous responses.
+        // Set the points text to display the player's score.
+        scoreText.text = "Score: " + score.ToString();
+        //GameOverUIManager.Instance.ShowGameOverUI(playerScore);
     }
 
     public void RestartGame()
@@ -33,17 +36,6 @@ public class GameOverUIManager : MonoBehaviour
     {
         // Load the main map scene.
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
-    }
-
-    // This method is called when you want to display the game over screen with the score.
-    public void ShowGameOverUI(int score)
-    {
-        // Display the game over screen elements.
-        gameOverPanel.SetActive(true);
-
-        // Set the points text to display the player's score.
-        scoreText.text = "Score: " + score.ToString();
-        GameOverUIManager.Instance.ShowGameOverUI(playerScore);
     }
 
     // This method is called when the player scores points during the game.

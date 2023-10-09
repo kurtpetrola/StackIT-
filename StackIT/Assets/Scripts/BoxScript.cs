@@ -35,12 +35,21 @@ public class BoxScript : MonoBehaviour
     {
         canMove = true;
 
-        if (Random.Range(0, 2) > 0)
+        if (playerScore % 2 == 0)
         {
-            move_Speed *= -1f;
+            move_Speed *= 1.5f;
         }
 
         GameplayController.instance.currentBox = this;
+    }
+
+    void UpdateBoxMovement()
+    {
+        // Calculate the speed increment based on playerScore
+        float speedIncrement = Mathf.Pow(4f, playerScore / 2);
+
+        // Adjust move_Speed by the calculated increment
+        move_Speed *= speedIncrement;
     }
 
     void Update()
@@ -92,14 +101,14 @@ public class BoxScript : MonoBehaviour
 
         ignoreCollision = true;
         ignoreTrigger = true;
-         playerScore++;
+        playerScore++;
 
         // Update the score using the ScoreManager.
         scoreManager.IncreaseScore();
         GameOverUIManager.Instance.IncreaseScore();
 
         // Check if the player has successfully landed 10 stacks of boxes
-        if (playerScore % 10 == 0)
+        if (playerScore % 2 == 0)
         {
             // Update the movement here
             UpdateBoxMovement();
@@ -109,12 +118,6 @@ public class BoxScript : MonoBehaviour
         GameplayController.instance.MoveCamera();
     }
 
-    void UpdateBoxMovement()
-    {
-        // You can modify move_Speed or any other variables related to movement here.
-        // For example, you can increase the speed when the player lands 10 stacks.
-        move_Speed *= 1.5f; // Increase speed by 50%
-    }
 
     void RestartGame()
     {
