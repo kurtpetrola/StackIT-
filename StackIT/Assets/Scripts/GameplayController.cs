@@ -48,7 +48,7 @@ public class GameplayController : MonoBehaviour
 
     public void SpawnNewBox()
     {
-        Invoke("NewBox", 0.5f);
+        Invoke("NewBox", .7f);
     }
 
     void NewBox()
@@ -72,6 +72,5 @@ public class GameplayController : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 }
-
 
 
