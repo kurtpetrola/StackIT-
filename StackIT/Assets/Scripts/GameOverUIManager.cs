@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class GameOverUIManager : MonoBehaviour
 {
     public static GameOverUIManager Instance;
-    public Text scoreText;
+    //public Text scoreText;
     private int playerScore = 0;
 
     public GameObject gameOverPanel;
@@ -21,7 +21,7 @@ public class GameOverUIManager : MonoBehaviour
         gameOverPanel.SetActive(true);
 
         // Set the points text to display the player's score.
-        scoreText.text = "Score: " + score.ToString();
+        //scoreText.text = "Score: " + score.ToString();
         //GameOverUIManager.Instance.ShowGameOverUI(playerScore);
     }
 
