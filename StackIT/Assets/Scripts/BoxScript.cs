@@ -1,14 +1,17 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BoxScript : MonoBehaviour
 {
+    // ... (other code remains the same)
+
     private float min_X = -2.2f, max_X = 2.2f;
     private int playerScore = 0;
+    private int landedBoxCount = 0; // Added to track successfully landed boxes
 
     private bool canMove;
-    private float move_Speed = 2f;
+    private float move_Speed = 2.5f;
     public GameObject[] objectsToDrop;
     private Rigidbody2D myBody;
 
@@ -17,6 +20,10 @@ public class BoxScript : MonoBehaviour
     private bool ignoreTrigger;
 
     private ScoreManager scoreManager;
+    private float currentBoxMoveSpeed = 5f; // Added to store the current box's movement speed
+
+    private GameObject lastDroppedItem; // Added to track the last dropped item
+    private bool droppedTwoItemsInSuccession; // Added to track if two items were dropped in succession
 
     void Awake()
     {
@@ -31,26 +38,22 @@ public class BoxScript : MonoBehaviour
         }
     }
 
-    void Start()
+   void Start()
+{
+    canMove = true;
+
+    if (Random.Range(0, 2) > 0)
     {
-        canMove = true;
-
-        if (playerScore % 2 == 0)
-        {
-            move_Speed *= 1.5f;
-        }
-
-        GameplayController.instance.currentBox = this;
+        move_Speed = 4f;
     }
+    
 
-    void UpdateBoxMovement()
-    {
-        // Calculate the speed increment based on playerScore
-        float speedIncrement = Mathf.Pow(4f, playerScore / 2);
+    
+    currentBoxMoveSpeed = move_Speed;
 
-        // Adjust move_Speed by the calculated increment
-        move_Speed *= speedIncrement;
-    }
+    GameplayController.instance.currentBox = this;
+}
+
 
     void Update()
     {
@@ -90,7 +93,21 @@ public class BoxScript : MonoBehaviour
             GameObject objectToDrop = objectsToDrop[randomIndex];
 
             // Instantiate the chosen object at the current position of the box.
-            Instantiate(objectToDrop, transform.position, Quaternion.identity);
+            GameObject spawnedObject = Instantiate(objectToDrop, transform.position, Quaternion.identity);
+
+            // Set the spawned object's initial movement speed based on the current box's movement speed
+            if (spawnedObject.GetComponent<Rigidbody2D>() != null)
+            {
+                Rigidbody2D objRigidbody = spawnedObject.GetComponent<Rigidbody2D>();
+                objRigidbody.velocity = new Vector2(currentBoxMoveSpeed, objRigidbody.velocity.y);
+
+                // Check if two items were dropped in succession
+                if (lastDroppedItem != null)
+                {
+                    droppedTwoItemsInSuccession = true;
+                }
+                lastDroppedItem = spawnedObject;
+            }
         }
     }
 
@@ -107,17 +124,31 @@ public class BoxScript : MonoBehaviour
         scoreManager.IncreaseScore();
         GameOverUIManager.Instance.IncreaseScore();
 
+        // Increment the count of landed boxes.
+        landedBoxCount++;
+
         // Check if the player has successfully landed 10 stacks of boxes
-        if (playerScore % 2 == 0)
+        if (landedBoxCount % 2 == 0)
         {
             // Update the movement here
             UpdateBoxMovement();
         }
 
+        // Reset the droppedTwoItemsInSuccession flag
+        droppedTwoItemsInSuccession = false;
+
         GameplayController.instance.SpawnNewBox();
         GameplayController.instance.MoveCamera();
     }
 
+    void UpdateBoxMovement()
+    {
+        // Increase the move_Speed by 1f.
+        move_Speed += 1f;
+
+        // Reset the count of landed boxes.
+        landedBoxCount = 0;
+    }
 
     void RestartGame()
     {
