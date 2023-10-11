@@ -13,8 +13,7 @@ public class BoxSpawner : MonoBehaviour
 
         GameObject boxObj = Instantiate(boxPrefabVariant);
         Vector3 temp = transform.position;
-        temp.z = 0f;
+        temp.z = 2f;
         boxObj.transform.position = temp;
     }
 }
-
