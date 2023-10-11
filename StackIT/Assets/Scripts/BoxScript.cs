@@ -1,29 +1,26 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BoxScript : MonoBehaviour
 {
-    // ... (other code remains the same)
-
     private float min_X = -2.2f, max_X = 2.2f;
     private int playerScore = 0;
-    private int landedBoxCount = 0; // Added to track successfully landed boxes
-
+    private int landedBoxCount = 0;
+    private int consecutiveSuccessCount = 0; // Track consecutive successful landings
     private bool canMove;
     private float move_Speed = 2.5f;
     public GameObject[] objectsToDrop;
     private Rigidbody2D myBody;
-
     private bool gameOver;
     private bool ignoreCollision;
     private bool ignoreTrigger;
-
     private ScoreManager scoreManager;
-    private float currentBoxMoveSpeed = 5f; // Added to store the current box's movement speed
-
-    private GameObject lastDroppedItem; // Added to track the last dropped item
-    private bool droppedTwoItemsInSuccession; // Added to track if two items were dropped in succession
+    private float currentBoxMoveSpeed = 5f;
+    private GameObject lastDroppedItem;
+    private bool droppedTwoItemsInSuccession;
+    public int successfulLandings = 0;
+    private int itemsDropped = 0;
 
     void Awake()
     {
@@ -38,22 +35,19 @@ public class BoxScript : MonoBehaviour
         }
     }
 
-   void Start()
-{
-    canMove = true;
-
-    if (Random.Range(0, 2) > 0)
+    void Start()
     {
-        move_Speed = 4f;
+        canMove = true;
+
+        if (Random.Range(0, 2) > 0)
+        {
+            move_Speed = 4f;
+        }
+
+        currentBoxMoveSpeed = move_Speed;
+
+        GameplayController.instance.currentBox = this;
     }
-    
-
-    
-    currentBoxMoveSpeed = move_Speed;
-
-    GameplayController.instance.currentBox = this;
-}
-
 
     void Update()
     {
@@ -65,7 +59,6 @@ public class BoxScript : MonoBehaviour
         if (canMove)
         {
             Vector3 temp = transform.position;
-
             temp.x += move_Speed * Time.deltaTime;
 
             if (temp.x > max_X)
@@ -85,28 +78,36 @@ public class BoxScript : MonoBehaviour
         canMove = false;
         myBody.gravityScale = Random.Range(2, 4);
 
-        // Check if the objectsToDrop array is not empty
         if (objectsToDrop.Length > 0)
         {
-            // Choose a random object from the objectsToDrop array.
             int randomIndex = Random.Range(0, objectsToDrop.Length);
             GameObject objectToDrop = objectsToDrop[randomIndex];
-
-            // Instantiate the chosen object at the current position of the box.
             GameObject spawnedObject = Instantiate(objectToDrop, transform.position, Quaternion.identity);
 
-            // Set the spawned object's initial movement speed based on the current box's movement speed
             if (spawnedObject.GetComponent<Rigidbody2D>() != null)
             {
                 Rigidbody2D objRigidbody = spawnedObject.GetComponent<Rigidbody2D>();
                 objRigidbody.velocity = new Vector2(currentBoxMoveSpeed, objRigidbody.velocity.y);
 
-                // Check if two items were dropped in succession
                 if (lastDroppedItem != null)
                 {
                     droppedTwoItemsInSuccession = true;
                 }
                 lastDroppedItem = spawnedObject;
+            }
+        }
+
+        itemsDropped++;
+
+        if (itemsDropped == 5)
+        {
+            successfulLandings++; // Increment successful landings
+            itemsDropped = 0; // Reset items dropped
+
+            if (successfulLandings == 5)
+            {
+                playerScore *= 2; // Double the score
+                successfulLandings = 0; // Reset the count
             }
         }
     }
@@ -124,30 +125,27 @@ public class BoxScript : MonoBehaviour
         scoreManager.IncreaseScore();
         GameOverUIManager.Instance.IncreaseScore();
 
-        // Increment the count of landed boxes.
         landedBoxCount++;
+        consecutiveSuccessCount++;
 
-        // Check if the player has successfully landed 10 stacks of boxes
-        if (landedBoxCount % 2 == 0)
+        if (consecutiveSuccessCount == 5)
         {
-            // Update the movement here
-            UpdateBoxMovement();
+            playerScore *= 2; // Double the score
+            consecutiveSuccessCount = 0; // Reset the count
         }
 
-        // Reset the droppedTwoItemsInSuccession flag
         droppedTwoItemsInSuccession = false;
+        itemsDropped = 0;
+
+        successfulLandings++;
+        if (successfulLandings == 5)
+        {
+            playerScore *= 2; // Double the score
+            successfulLandings = 0; // Reset the count
+        }
 
         GameplayController.instance.SpawnNewBox();
         GameplayController.instance.MoveCamera();
-    }
-
-    void UpdateBoxMovement()
-    {
-        // Increase the move_Speed by 1f.
-        move_Speed += 1f;
-
-        // Reset the count of landed boxes.
-        landedBoxCount = 0;
     }
 
     void RestartGame()
@@ -180,13 +178,12 @@ public class BoxScript : MonoBehaviour
 
         if (target.tag == "GameOver")
         {
-            // Set game over flag and disable box movement.
             gameOver = true;
             canMove = false;
             ignoreTrigger = true;
 
-            // Notify the GameOverUIManager that the game is over and pass the score.
             GameOverUIManager.Instance.ShowGameOverUI(playerScore);
         }
     }
 }
+

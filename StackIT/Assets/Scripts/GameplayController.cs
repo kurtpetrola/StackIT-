@@ -11,8 +11,6 @@ public class GameplayController : MonoBehaviour
     public BoxScript currentBox;
     public CameraFollow cameraScript;
     private int moveCount;
-
-    // Add a public array to hold references to different object prefabs
     public GameObject[] objectsToDrop;
 
     void Awake()
@@ -35,14 +33,10 @@ public class GameplayController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            // Choose a random object from the objectsToDrop array
             int randomIndex = UnityEngine.Random.Range(0, objectsToDrop.Length);
-
             GameObject objectToDrop = objectsToDrop[randomIndex];
 
-            // Drop the selected object
             currentBox.DropRandomObject();
-
         }
     }
 
@@ -72,5 +66,3 @@ public class GameplayController : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 }
-
-
