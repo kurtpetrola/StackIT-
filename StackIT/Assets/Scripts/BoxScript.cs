@@ -19,7 +19,7 @@ public class BoxScript : MonoBehaviour
     private float currentBoxMoveSpeed = 5f;
     private GameObject lastDroppedItem;
     private bool droppedTwoItemsInSuccession;
-    public int successfulLandings = 0;
+    private int successfulLandings = 0;
     private int itemsDropped = 0;
 
     void Awake()
@@ -137,13 +137,6 @@ public class BoxScript : MonoBehaviour
         droppedTwoItemsInSuccession = false;
         itemsDropped = 0;
 
-        successfulLandings++;
-        if (successfulLandings == 5)
-        {
-            playerScore *= 2; // Double the score
-            successfulLandings = 0; // Reset the count
-        }
-
         GameplayController.instance.SpawnNewBox();
         GameplayController.instance.MoveCamera();
     }
@@ -186,4 +179,3 @@ public class BoxScript : MonoBehaviour
         }
     }
 }
-
