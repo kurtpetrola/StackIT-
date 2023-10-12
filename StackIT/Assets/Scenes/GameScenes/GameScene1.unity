@@ -1703,7 +1703,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1158821304}
   unlockText: {fileID: 1449956599}
-  shopManager: {fileID: 6370328207527835847, guid: a34afc7932355194b8f502c0ab43748d, type: 3}
 --- !u!114 &1158821304
 MonoBehaviour:
   m_ObjectHideFlags: 0

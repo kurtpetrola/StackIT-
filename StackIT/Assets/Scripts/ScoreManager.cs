@@ -11,7 +11,7 @@ public class ScoreManager : MonoBehaviour
     private bool isUnlockMessageShowing = false;
 
     // Reference to the ShopManager script
-    public ShopManager shopManager;
+    //public ShopManager shopManager;
 
     public void IncreaseScore()
     {
@@ -36,11 +36,11 @@ public class ScoreManager : MonoBehaviour
     private IEnumerator ShowUnlockMessage()
     {
         isUnlockMessageShowing = true;
-        unlockText.text = "You Unlock The 2x item";
+        unlockText.text = "2X Activated";
         unlockText.gameObject.SetActive(true);
 
         // Call the ShopManager to unlock the 2x item
-        shopManager.Unlock2xItem();
+        //shopManager.Unlock2xItem();
 
         yield return new WaitForSeconds(5f);
         unlockText.gameObject.SetActive(false);
