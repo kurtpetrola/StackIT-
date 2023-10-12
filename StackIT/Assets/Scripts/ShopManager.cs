@@ -3,29 +3,21 @@ using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
-    public Image lockIcon2xItem; // Reference to the lock icon Image component for the 2x item
+    public Image lockIcon2xItem;
+
     private bool is2xItemUnlocked = false;
 
-    // Call this function when the player successfully stacks 5 boxes
-    public void Stack5Boxes()
+    public void Unlock2xItem()
     {
-        // Check if the player has stacked 5 boxes and unlock the 2x item
-        if (!is2xItemUnlocked)
-        {
-            is2xItemUnlocked = true;
-            UpdateShopUI();
-        }
+        is2xItemUnlocked = true;
+        UpdateShopUI();
     }
 
-    // Update the shop UI to show/hide the lock icon based on unlock status
     private void UpdateShopUI()
     {
         if (is2xItemUnlocked)
         {
-            // The 2x item is unlocked, disable the lock icon
-            lockIcon2xItem.enabled = false;
+            lockIcon2xItem.enabled = false; // Disable the lock icon
         }
     }
-
-    // Other shop-related functions...
 }

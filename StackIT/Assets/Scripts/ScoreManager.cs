@@ -1,15 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections; // Add this using directive
+using System.Collections;
 
 public class ScoreManager : MonoBehaviour
 {
     public Text scoreText;
-    public Text unlockText; // Reference to the unlock message text element
+    public Text unlockText;
     private int playerScore = 0;
-    private int stackedItems = 0; // Track the number of stacked items
-
+    private int stackedItems = 0;
     private bool isUnlockMessageShowing = false;
+
+    // Reference to the ShopManager script
+    public ShopManager shopManager;
 
     public void IncreaseScore()
     {
@@ -25,7 +27,6 @@ public class ScoreManager : MonoBehaviour
 
         scoreText.text = "Score: " + playerScore.ToString();
 
-        // Check if the player has successfully stacked 5 items
         if (playerScore == 3 && !isUnlockMessageShowing)
         {
             StartCoroutine(ShowUnlockMessage());
@@ -37,7 +38,11 @@ public class ScoreManager : MonoBehaviour
         isUnlockMessageShowing = true;
         unlockText.text = "You Unlock The 2x item";
         unlockText.gameObject.SetActive(true);
-        yield return new WaitForSeconds(5f); // Display the message for 5 seconds
+
+        // Call the ShopManager to unlock the 2x item
+        shopManager.Unlock2xItem();
+
+        yield return new WaitForSeconds(5f);
         unlockText.gameObject.SetActive(false);
         isUnlockMessageShowing = false;
     }
