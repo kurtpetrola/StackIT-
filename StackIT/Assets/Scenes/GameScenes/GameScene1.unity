@@ -1704,6 +1704,10 @@ MonoBehaviour:
   scoreText: {fileID: 1158821304}
   highestScoreText: {fileID: 5108907388674416685, guid: 95f271404abd1f948842769379d724f3, type: 3}
   unlockText: {fileID: 1449956599}
+<<<<<<< Updated upstream
+=======
+  shopManager: {fileID: 0}
+>>>>>>> Stashed changes
 --- !u!114 &1158821304
 MonoBehaviour:
   m_ObjectHideFlags: 0
