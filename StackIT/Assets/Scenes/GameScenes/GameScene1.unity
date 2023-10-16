@@ -572,6 +572,7 @@ GameObject:
   - component: {fileID: 463698211}
   - component: {fileID: 463698210}
   - component: {fileID: 463698209}
+  - component: {fileID: 463698212}
   m_Layer: 5
   m_Name: ExitBtn
   m_TagString: Untagged
@@ -644,7 +645,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 567774401}
+      - m_Target: {fileID: 463698212}
         m_TargetAssemblyTypeName: StartGame, Assembly-CSharp
         m_MethodName: changeScene
         m_Mode: 1
@@ -694,6 +695,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 463698207}
   m_CullTransparentMesh: 1
+--- !u!114 &463698212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463698207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff0e77acf9745d4aafd928ced74a6c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: MainScene
 --- !u!1 &507423342
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,7 +791,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 567774400}
-  - component: {fileID: 567774401}
   m_Layer: 0
   m_Name: OPSceneManager
   m_TagString: Untagged
@@ -800,19 +813,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 463698208}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &567774401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 567774399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ff0e77acf9745d4aafd928ced74a6c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName: MainScene
 --- !u!1 &678618717
 GameObject:
   m_ObjectHideFlags: 0
@@ -1702,6 +1702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1158821304}
+  highestScoreText: {fileID: 5108907388674416685, guid: 95f271404abd1f948842769379d724f3, type: 3}
   unlockText: {fileID: 1449956599}
 --- !u!114 &1158821304
 MonoBehaviour:
@@ -1795,6 +1796,99 @@ MonoBehaviour:
   - {fileID: 1307286407155304737, guid: 43dd709290536a44f9b0a33ad4799c36, type: 3}
   - {fileID: 6391254955205029149, guid: 3c58d87c12895a2439c044f30738117e, type: 3}
   - {fileID: 6391254955205029149, guid: 8187fb6363e223d4db24b4f024e4f564, type: 3}
+--- !u!1 &1278165266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1278165267}
+  - component: {fileID: 1278165269}
+  - component: {fileID: 1278165268}
+  - component: {fileID: 1278165270}
+  m_Layer: 5
+  m_Name: Score
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1278165267
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278165266}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1386572860}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -62, y: 181.9}
+  m_SizeDelta: {x: 1060.343, y: 141.1978}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1278165268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278165266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.7568628, g: 0.7568628, b: 0.7568628, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: c85d594018f197143ba883f47e4e0130, type: 3}
+    m_FontSize: 100
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 100
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Highest Score:'
+--- !u!222 &1278165269
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278165266}
+  m_CullTransparentMesh: 1
+--- !u!114 &1278165270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278165266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0ff920bd82a1634a89ad8d33dbb28f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highestScoreText: {fileID: 1278165268}
 --- !u!1 &1386163780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1961,6 +2055,7 @@ RectTransform:
   - {fileID: 933747867}
   - {fileID: 2048061464}
   - {fileID: 1566501405}
+  - {fileID: 1278165267}
   m_Father: {fileID: 1036213170}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2056,7 +2151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.3019608, g: 0.26666668, b: 0.5311913, a: 0.7294118}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2064,7 +2159,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 9738cbb13d5dfb349958a4300a97ac36, type: 3}
+    m_Font: {fileID: 12800000, guid: d8e5eb1892bc1ba4dba9d6dc0f15c598, type: 3}
     m_FontSize: 40
     m_FontStyle: 1
     m_BestFit: 0
