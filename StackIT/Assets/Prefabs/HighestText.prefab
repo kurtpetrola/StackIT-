@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2670702843754608100
+--- !u!1 &8061073961714120397
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,25 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4430189846294705748}
-  - component: {fileID: 5707280853510928613}
-  - component: {fileID: 5108907388674416685}
+  - component: {fileID: 3412865937009074210}
+  - component: {fileID: 5453978770847519726}
+  - component: {fileID: 8650409385326012242}
+  - component: {fileID: 5048821520987013987}
   m_Layer: 5
-  m_Name: Highest Score_
+  m_Name: HighestText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &4430189846294705748
+--- !u!224 &3412865937009074210
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2670702843754608100}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_GameObject: {fileID: 8061073961714120397}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -34,24 +35,24 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -294.60767, y: 1015.2715}
-  m_SizeDelta: {x: 413.7648, y: 188.0702}
+  m_AnchoredPosition: {x: 10.8328, y: -8.415}
+  m_SizeDelta: {x: 457.6657, y: 134.8301}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &5707280853510928613
+--- !u!222 &5453978770847519726
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2670702843754608100}
+  m_GameObject: {fileID: 8061073961714120397}
   m_CullTransparentMesh: 1
---- !u!114 &5108907388674416685
+--- !u!114 &8650409385326012242
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2670702843754608100}
+  m_GameObject: {fileID: 8061073961714120397}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
@@ -66,16 +67,31 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d8e5eb1892bc1ba4dba9d6dc0f15c598, type: 3}
+    m_Font: {fileID: 12800000, guid: c85d594018f197143ba883f47e4e0130, type: 3}
     m_FontSize: 50
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 50
+    m_MaxSize: 80
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Highest Score:'
+  m_Text: 'Highest Score: 15
+
+'
+--- !u!114 &5048821520987013987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8061073961714120397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3690ad5b393886e408036132dee3a187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highestScoreText: {fileID: 8650409385326012242}

@@ -5,100 +5,98 @@ using System.Collections;
 public class ScoreManager : MonoBehaviour
 {
     public Text scoreText;
-<<<<<<< Updated upstream
     public Text highestScoreText;
     public Text unlockText;
+    public HighScoreManager highScoreManager; // Reference to the HighScoreManager
+    public GameObject lockedItemImage; // Reference to the locked image in the shop
 
     private int playerScore = 0;
-    private int highestScore = 1;
     private int stackedItems = 0;
     private bool isUnlockMessageShowing = false;
+    private bool isLockRemoved = false;
 
-    void Start()
+    // PlayerPrefs keys
+    private const string LockStateKey = "LockState";
+
+   void Start()
+{
+    LoadHighestScore();
+    UpdateHighestScoreUI();
+    
+    // Check if the lock has already been removed
+    isLockRemoved = PlayerPrefs.GetInt(LockStateKey, 0) == 1;
+
+   /* if (isLockRemoved)
     {
-        LoadHighestScore();
+        unlockText.text = "2x Item Is Unlock";
+    }
+    else
+    {
+        unlockText.text = "2x item is Activate"; // Initial message when the lock is not removed
+    }*/
+}
+
+   public void IncreaseScore()
+{
+    playerScore++;
+
+    if (playerScore > highScoreManager.GetHighestScore())
+    {
+        highScoreManager.SetHighestScore(playerScore);
         UpdateHighestScoreUI();
     }
-=======
-    public Text unlockText; // Reference to the unlock message text element
-    private int playerScore = 0;
-    private int stackedItems = 0; // Track the number of stacked items
-    private bool isUnlockMessageShowing = false;
 
-    public ShopManager shopManager; // Reference to the ShopManager in the same scene
->>>>>>> Stashed changes
-
-    public void IncreaseScore()
+    if (playerScore == 3 && !isUnlockMessageShowing)
     {
-        playerScore++;
-
-        if (playerScore > highestScore)
-        {
-            highestScore = playerScore;
-            SaveHighestScore();
-            UpdateHighestScoreUI();
-        }
-
-        // Check if an item is stacked
-        if (playerScore == 3 && !isUnlockMessageShowing)
+        if (isLockRemoved)
         {
             StartCoroutine(ShowUnlockMessage());
+            unlockText.text = "2X Item Activated";
         }
-
-        // Check if an item is stacked
-        if (playerScore == 4)
+        else
         {
-            stackedItems++;
+            RemoveLockImage();
+            StartCoroutine(ShowUnlockMessage());
+            unlockText.text = "2x Item Is Unlock";
         }
-
-        playerScore += stackedItems;
-
-        scoreText.text = "Score: " + playerScore.ToString();
     }
 
-<<<<<<< Updated upstream
+    if (playerScore == 4)
+    {
+        stackedItems++;
+    }
+
+    playerScore += stackedItems;
+
+    scoreText.text = "Score: " + playerScore.ToString();
+}
+
+
     private void LoadHighestScore()
     {
-        highestScore = PlayerPrefs.GetInt("HighestScore", 0);
-    }
-
-    private void SaveHighestScore()
-    {
-        PlayerPrefs.SetInt("HighestScore", highestScore);
-        PlayerPrefs.Save();
+        highScoreManager.LoadHighestScore();
     }
 
     private void UpdateHighestScoreUI()
     {
-        highestScoreText.text = "Highest Score: " + highestScore.ToString();
-=======
-        // Check if the player has successfully stacked 5 items
-        if (playerScore == 3 && !isUnlockMessageShowing)
-        {
-            StartCoroutine(ShowUnlockMessage());
-
-            // Unlock the 2x item in the shop
-            if (shopManager != null)
-            {
-                shopManager.Unlock2xItem();
-            }
-        }
->>>>>>> Stashed changes
+        highestScoreText.text = "Highest Score: " + highScoreManager.GetHighestScore().ToString();
     }
 
     private IEnumerator ShowUnlockMessage()
     {
         isUnlockMessageShowing = true;
-        unlockText.text = "2X Activated";
         unlockText.gameObject.SetActive(true);
-<<<<<<< Updated upstream
 
         yield return new WaitForSeconds(1f);
-=======
-        yield return new WaitForSeconds(5f); // Display the message for 5 seconds
->>>>>>> Stashed changes
         unlockText.gameObject.SetActive(false);
         isUnlockMessageShowing = false;
     }
-}
 
+    private void RemoveLockImage()
+    {
+        lockedItemImage.SetActive(false);
+        PlayerPrefs.SetInt(LockStateKey, 1);
+        PlayerPrefs.Save();
+        isLockRemoved = true;
+    }
+}
