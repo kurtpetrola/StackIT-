@@ -1,2 +1,2 @@
-# StackIT
+# StackIT-Intro
 ``` Simple stacking game. ```
